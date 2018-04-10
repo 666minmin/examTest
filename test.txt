@@ -1,0 +1,83 @@
+call() apply() bind()
+ 都是Function对象的方法；
+ 都可以改变函数体的this对象的指向；
+ 第一个参数都是this要指向的的对象；
+
+bind是返回对象函数，便于稍后调用；apply、call是立即调用函数。
+apply和call除了传参方式不一样，call参数一个一个传，apply参数放在数组里面，初此之外基本相同。
+
+[A对象].[函数].call([B对象]，param1,param2,...);
+
+[A对象].[函数].apply([B对象]，[param1,param2,...]);
+
+[A对象].[函数].bind([B对象]，param1,param2,...)();
+
+说明：
+调用[A对象]的[函数]，但[函数]的this指向的是[B对象]
+
+
+1、DNS解析
+输入网址，查询本地hosts文件有没有对应ip地址，如果没有，下一步；
+查询本地DNS服务器缓存记录有没有对应ip地址，如果没有，下一步；
+本地DNS服务器向DNS根服务器请求，返回域服务器地址
+本地DNS服务器向域服务器请求，返回域名的解析服务器地址
+本地DNS服务器向域名的解析服务器请求，返回IP，缓存对应关系
+
+2、建立TCP连接（TCP三次握手）
+第一次握手：client向server发出建立连接的请求
+第二次握手：server向client发出确认同意建立连接的请求
+第三次握手：client向server发出确认收到同意建立连接的请求
+完成三次握手，client和server可以开始传输数据
+
+3、发送HTTP请求
+```
+GET / HTTP/1.1
+Host: xiedaimala.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+```
+4、服务器处理请求并返回HTTP报文
+```
+HTTP/1.1 200 OK
+Server: nginx/1.4.6 (Ubuntu)
+Date: Mon, 09 Apr 2018 12:03:33 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: max-age=0, private, must-revalidate
+
+```
+5、关闭TCP连接（TCP四次挥手）
+6、浏览器解析渲染页面
+
+闭包
+【函数】+【变量】+【函数内部能访问变量】,满足三个条件就是一个闭包
+```
+function foo(){
+  //条件一：【变量】
+  var local = 1 
+  //条件二：【函数】
+  function bar(){
+    //条件三：【函数内部能访问变量】
+    local++  
+    return local
+  }
+  return bar
+}
+```
+
+1、可以读取函数内部的变量
+2、让这些变量的值始终保持在内存中
+
+
+
+
